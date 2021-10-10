@@ -1,4 +1,4 @@
-# (1) use python SDK
+##################################### (1) use python SDK
 import json
 
 # This time our input is an array of two feature arrays
@@ -17,7 +17,7 @@ predicted_classes = json.loads(predictions)
 for i in range(len(x_new)):
     print ("Patient {}".format(x_new[i]), predicted_classes[i] )
     
-# (2) make HTTP requests
+########################################### (2) make HTTP requests
 import requests
 import json
 
@@ -36,7 +36,7 @@ predicted_classes = json.loads(predictions.json())
 for i in range(len(x_new)):
     print ("Patient {}".format(x_new[i]), predicted_classes[i] )
     
-# REST request to include Authorization header
+##################################### REST request to include Authorization header
 import requests
 import json
 from azureml.core import Webservice
