@@ -25,3 +25,6 @@ for model in Model.list(ws):
     print('\t',prop_name,':',prop)
   print('\n')
 
+# By defauly, if we specify a name, the lastest version will be returned:
+model=ws.model['specific_model_name']
+print(model.name,'version',model.version)
