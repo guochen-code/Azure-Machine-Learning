@@ -7,5 +7,5 @@ print('Ready to use azure ml {} to work with {}'.format(azureml.core.VERSION,ws.
 # connection to workspace
 from azureml.core import Workspace
 ws=Workspace(subscription_id='<subscription_id>',
-resource_group='<resource_group>',
-workspace_name='<workspace_name>')
+             resource_group='<resource_group>',
+             workspace_name='<workspace_name>')
