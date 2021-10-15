@@ -1,3 +1,7 @@
+# Azure ML provides two ways to control access to web services: Kea and Token. User/Password is not applicable here.
+
+*******************************************************************************
+
 # When sending a request to a service that is secured with a key or token, use the Authorization header to pass the key or token. 
 # The key or token must be formatted as Bearer <key-or-token>, where <key-or-token> is your key or token value.
 
