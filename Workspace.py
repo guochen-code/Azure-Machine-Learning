@@ -1,3 +1,7 @@
+# get workspace configuration
+# use azure sdk to output the configuration given a workspace reference ws:
+ws.write_config(path='./file_path', filename='config.json')
+
 # Connection to Workspace
 import azureml.core
 from azureml.core import workspace
