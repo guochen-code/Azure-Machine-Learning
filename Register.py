@@ -18,6 +18,7 @@ run.register_model(model_path='outputs/model_name.pkl',  ### model_path refers t
 print(model.name, model.id, model.version, sep='\t')
 
 #                        (2) Register a model from an azureml.train.automl.run.AutoMLRun object:
+from azureml.train.automl.run import AutoMLRun
 description = 'My AutoML Model'
 model = run.register_model(description = description,
                                tags={'area': 'qna'})
