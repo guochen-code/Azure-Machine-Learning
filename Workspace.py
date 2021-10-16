@@ -13,3 +13,17 @@ from azureml.core import Workspace
 ws=Workspace(subscription_id='<subscription_id>',
              resource_group='<resource_group>',
              workspace_name='<workspace_name>')
+
+*********************************************************************************************
+      
+for compute_name in ws.compute_targets:
+      compute=ws.compute_targets[compute_name]
+      print(compute.name,':',compute.type)
+
+for datastore_name in ws.datastores:
+      datastore=Datastore.get(ws,datastore_name)
+      print(datastore.name,':',datastore.datastore_type)
+
+for dataset_name in ws.datasets:
+      dataset=Dataset.get_by_name(ws,dataset_name)
+      print(dataset.name)
