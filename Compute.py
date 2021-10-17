@@ -15,3 +15,7 @@ except ComputeTargetException:
         training_cluster.wait_for_completion(show_output=True)
     except Exception as ex:
         print(ex)
+
+  *********************************************************************************
+# For a more detailed view of current Azure Machine Learning Compute status, use get_status()
+training_cluster.get_status().serialize()
