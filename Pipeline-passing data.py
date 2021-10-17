@@ -63,7 +63,7 @@ trainStep = PythonScriptStep(
 )
 print("trainStep created")
 
-use output genereated from previous step & existing data in a datastore ************************************************************* PipleParameter() + DataPath()
+use output genereated from previous step & existing data in a datastore ******************************************************** PipleParameter() + DataPath()
 
 # Reference the data uploaded to blob storage using a PipelineParameter and a DataPath
 from azureml.pipeline.core import PipelineParameter
@@ -108,7 +108,8 @@ for step in pipeline_run1.get_steps():
         print("\tdatastore: " + output_reference.datastore_name)
         print("\tpath on datastore: " + output_reference.path_on_datastore)
         
-# download ------------------------ Retrieve the step runs by name 'train.py'
+# download ------------------------ We can download the output of any step to our local machine using the SDK.
+# Retrieve the step runs by name 'train.py'
 train_step = pipeline_run1.find_step_run('train.py')
 
 if train_step:
