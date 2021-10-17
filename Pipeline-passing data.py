@@ -62,3 +62,55 @@ trainStep = PythonScriptStep(
     runconfig=run_config
 )
 print("trainStep created")
+
+use output genereated from previous step & existing data in a datastore ************************************************************* PipleParameter() + DataPath()
+
+# Reference the data uploaded to blob storage using a PipelineParameter and a DataPath
+from azureml.pipeline.core import PipelineParameter
+from azureml.data.datapath import DataPath, DataPathComputeBinding
+
+datapath = DataPath(datastore=def_blob_store, path_on_datastore='20newsgroups/20news.pkl')
+datapath_param = PipelineParameter(name="compare_data", default_value=datapath)
+data_parameter1 = (datapath_param, DataPathComputeBinding(mode='mount'))
+# Now define the compare step which takes two inputs and produces an output
+processed_data3 = PipelineData("processed_data3", datastore=def_blob_store)
+source_directory = "data_dependency_run_compare"
+
+compareStep = PythonScriptStep(
+    script_name="compare.py",
+    arguments=["--compare_data1", data_parameter1, "--compare_data2", processed_data2, "--output_compare", processed_data3],
+    inputs=[data_parameter1, processed_data2],
+    outputs=[processed_data3],    
+    compute_target=aml_compute, 
+    source_directory=source_directory)
+print("compareStep created")
+
+pipeline1=Pipeline(workspace=ws,steps=[compareStep])
+print('pipeline is built')
+pipeline_run1=Experiment(ws,'name').submit(pipeline1)
+RunDetails(pipeline_run1).show()
+pipeline_run1.wait_for_completion(show_output=True)
+
+see outputs *************************************************************
+# See where outputs of each pipeline step are located on your datastore.
+# Wait for pipeline run to complete, to make sure all the outputs are ready
+# Get Steps
+for step in pipeline_run1.get_steps():
+    print("Outputs of step " + step.name)
+    
+    # Get a dictionary of StepRunOutputs with the output name as the key 
+    output_dict = step.get_outputs()
+    
+    for name, output in output_dict.items():
+        
+        output_reference = output.get_port_data_reference() # Get output port data reference
+        print("\tname: " + name)
+        print("\tdatastore: " + output_reference.datastore_name)
+        print("\tpath on datastore: " + output_reference.path_on_datastore)
+        
+# download ------------------------ Retrieve the step runs by name 'train.py'
+train_step = pipeline_run1.find_step_run('train.py')
+
+if train_step:
+    train_step_obj = train_step[0] # since we have only one step by name 'train.py'
+    train_step_obj.get_output_data('processed_data1').download("./outputs") # download the output to current directory
