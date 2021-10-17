@@ -51,3 +51,14 @@ output_overwrite: Flag to overwrite pre-existing data
 processed_data1 = PipelineData("processed_data1",datastore=def_blob_store)
 print("PipelineData object created")
 
+############## consumes the datasource (Datareference) in the previous step and produces processed_data1
+trainStep = PythonScriptStep(
+    script_name="train.py", 
+    arguments=["--input_data", blob_input_data, "--output_train", processed_data1],
+    inputs=[blob_input_data],
+    outputs=[processed_data1],
+    compute_target=aml_compute, 
+    source_directory=source_directory,
+    runconfig=run_config
+)
+print("trainStep created")
