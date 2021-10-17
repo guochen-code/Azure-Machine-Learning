@@ -1,7 +1,7 @@
 # a step in the pipeline can take data as input. 
 # This data can be a data source that lives in one of the accessible data locations, 
 # or intermediate data produced by a previous step in the pipeline.
-Datasource ******************************************************************************************************************************************** DataReference()
+Datasource ******************************************************************************************************************************* DataReference()
 # Datasource is represented by DataReference object and points to data that lives in or is accessible from Datastore. 
 # DataReference could be a pointer to a file or a directory.
 
@@ -21,7 +21,7 @@ blob_input_data = DataReference(
     path_on_datastore="20newsgroups/20news.pkl")
 print("DataReference object created")
 
-Intermediate/Output Data ***************************************************************************************************************************** PipelineData()
+Intermediate/Output Data **************************************************************************************************************** PipelineData()
 # Intermediate data (or output of a Step) is represented by PipelineData object. 
 # PipelineData can be produced by one step and consumed in another step by providing the PipelineData object as an output of one step and the input of one or more steps.
 
