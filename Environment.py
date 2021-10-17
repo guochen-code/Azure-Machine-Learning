@@ -17,7 +17,7 @@ for package in packages:
   service_env.python.conda_dependencies.add_pip_package(package)
                          
                                
-*******************************************************************
+******************************************************************* Specify conda dependencies and a base docker image through a RunConfiguration
 # Use a RunConfiguration to specify some additional requirements for this step.
 from azureml.core.runconfig import RunConfiguration
 from azureml.core.conda_dependencies import CondaDependencies
