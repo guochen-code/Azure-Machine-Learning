@@ -10,7 +10,11 @@ experiment_name='experiment_with_mlflow'
 mlflow.set_experiment(experiment_name)
 with mlflow.start_run():
   mlflow.log_metric('alpha',0.03)
-  
+# the get_mlflow_tracking_uri() method assigns a unique tracking URI address to the workspace, ws, 
+# and set_tracking_uri() points the MLflow tracking URI to that address.
+# The tracking URI is valid up to an hour or less. 
+# If you restart your script after some idle time, use the get_mlflow_tracking_uri API to get a new URI.
+
 # (2) track remote runs
 from azureml.core.environment import Environment
 from azureml.core.conda_dependencies import CondaDependencies
