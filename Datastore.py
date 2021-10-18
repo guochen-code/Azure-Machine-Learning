@@ -1,3 +1,4 @@
+**********************************************************************Part-I Crediential-based authenticatoin**********************************************************************
 '''
 Authentication Type:
 
@@ -72,3 +73,41 @@ for name, datastore in datastores.items():
 # get and change default datastore    
 datastore = ws.get_default_datastore()
 ws.set_default_datastore(new_default_datastore)
+
+
+**********************************************************************Part-II Identity-based authenticatoin**********************************************************************
+'''
+Identity-based data access supports connections to only the following storage services:
+1) Azure Blob Storage
+2) Azure Data Lake Storage Gen1 and Gen2
+3) Azure SQL Database
+'''
+# Create blob datastore without credentials.
+blob_datastore = Datastore.register_azure_blob_container(workspace=ws,
+                                                      datastore_name='credentialless_blob',
+                                                      container_name='my_container_name',
+                                                      account_name='my_account_name')
+
+# Create Azure Data Lake Storage Gen1 datastore without credentials.
+adls_dstore = Datastore.register_azure_data_lake(workspace = workspace,
+                                                 datastore_name='credentialless_adls1',
+                                                 store_name='adls_storage')
+
+# Create Azure Data Lake Storage Gen2 datastore without credentials.
+adls2_dstore = Datastore.register_azure_data_lake_gen2(workspace=ws, 
+                                                       datastore_name='credentialless_adls2', 
+                                                       filesystem='tabular', 
+                                                       account_name='myadls2')
+
+# Use data in storage
+'''
+To create datasets with identity-based data access, you have the following options. 
+This type of dataset creation uses your Azure Active Directory token for data access authentication.
+Reference paths from datastores that also use identity-based data access. 
+In the following example, blob_datastore already exists and uses identity-based data access.
+'''
+blob_dataset = Dataset.Tabular.from_delimited_files(blob_datastore,'test.csv')
+
+# Skip datastore creation and create datasets directly from storage URLs. 
+# This functionality currently supports only Azure blobs and Azure Data Lake Storage Gen1 and Gen2.*******************
+blob_dset = Dataset.File.from_files('https://myblob.blob.core.windows.net/may/keras-mnist-fashion/')
