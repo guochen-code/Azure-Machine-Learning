@@ -24,6 +24,32 @@ blob_datastore = Datastore.register_azure_blob_container(workspace=ws,
                                                          account_name=account_name,
                                                          account_key=account_key)
 
+$$$$$$$$$$$$$$$$$$$$$$$$$
+from azureml.exceptions import UserErrorException
+
+blob_datastore_name='MyBlobDatastore'
+account_name=os.getenv("BLOB_ACCOUNTNAME_62", "<my-account-name>") # Storage account name
+container_name=os.getenv("BLOB_CONTAINER_62", "<my-container-name>") # Name of Azure blob container
+account_key=os.getenv("BLOB_ACCOUNT_KEY_62", "<my-account-key>") # Storage account key
+
+try:
+    blob_datastore = Datastore.get(ws, blob_datastore_name)
+    print("Found Blob Datastore with name: %s" % blob_datastore_name)
+except UserErrorException:
+    blob_datastore = Datastore.register_azure_blob_container(
+        workspace=ws,
+        datastore_name=blob_datastore_name,
+        account_name=account_name, # Storage account name
+        container_name=container_name, # Name of Azure blob container
+        account_key=account_key) # Storage account key
+    print("Registered blob datastore with name: %s" % blob_datastore_name)
+
+blob_data_ref = DataReference(
+    datastore=blob_datastore,
+    data_reference_name="blob_test_data",
+    path_on_datastore="testdata")
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
 # Azure file share
 file_datastore_name='azfilesharesdk' # Name of the datastore to workspace
 file_share_name=os.getenv("FILE_SHARE_CONTAINER", "<my-fileshare-name>") # Name of Azure file share container
