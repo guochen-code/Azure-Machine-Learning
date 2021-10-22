@@ -15,6 +15,11 @@ ws=Workspace(subscription_id='<subscription_id>',
              workspace_name='<workspace_name>')
 
 *********************************************************************************************
+By default, no path in .from_config(), so configuration file must be in:
+      1. in the same directory.
+      2. in a subdirectory named .azureml
+      3. in a parent directory.
+*********************************************************************************************
       
 for compute_name in ws.compute_targets:
       compute=ws.compute_targets[compute_name]
