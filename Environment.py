@@ -47,3 +47,9 @@ step = PythonScriptStep(name="extract_step",
                          compute_target=aml_compute, 
                          source_directory=source_directory,
                          runconfig=run_config)
+
+                               
+                               
+*******************************************************************                               
+ # Curated environments are available in your workspace by default. 
+tf_env = Environment.get(ws, name='AzureML-TensorFlow-2.0-GPU')                               
