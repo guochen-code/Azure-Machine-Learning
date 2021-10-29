@@ -9,13 +9,22 @@ registered_env=Environment.get(ws,'experiment_env)
 envs=Environment.List(workspace=ws)
 for env in envs:
   print('Name',env)
-                              
-# (2) via python packages
+                               
+#(2) use existing Conda environment
+env = Environment.from_existing_conda_environment(name='training_environment', conda_environment_name='py_env)                               
+                                                              
+# (3) via python packages
 service_env=Environment(name='service_env')
 python_packages=['scikit-learn','azureml-defaults','azure-ml-api-sdk']
 for package in packages:
   service_env.python.conda_dependencies.add_pip_package(package)
-                         
+ 
+%%%%%%%                                                  
+from azureml.core import Environment
+from azureml.core.conda_dependencies import CondaDependencies
+env = Environment('training_environment')
+deps=CondaDependencies.create(conda_packages=['scikit-learn','pandas','numpy'], pip_packages=['azureml-defaults'])
+env.python.conda_dependencies=deps                                                  
                                
 ******************************************************************* Specify conda dependencies and a base docker image through a RunConfiguration
 # Use a RunConfiguration to specify some additional requirements for this step.
