@@ -1,3 +1,9 @@
+# submit to run
+from azureml.core.experiment import Experiment
+automl_experiment=Experiment(ws,'automl_experiment')
+automl_run=automl_experiment.submit(automl_config)
+
+
 # retrive the best model:
 best_run, fitted_model=automl_run.get_output()
 y_predict=fitted_model.predict(X_test.values)
