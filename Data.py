@@ -1,3 +1,7 @@
+1) to access a pth in a datastore in an experiment script, you must create a data reference and pass it to the script as a parameter. 
+The script can then read data from the data reference parameter just like a local file path.
+2) to access a dataset in an experiment, pass the dataset as a named input to the ScriptRunConfig.
+************************************************************************************************************************************
 from azureml.core import Dataset
 
 default_ds = ws.get_default_datastore()
