@@ -33,6 +33,7 @@ headers = { 'Content-Type':'application/json' }
 predictions = requests.post(endpoint, input_json, headers = headers)
 predicted_classes = json.loads(predictions.json())
 
+
 for i in range(len(x_new)):
     print ("Patient {}".format(x_new[i]), predicted_classes[i] )
     
@@ -59,3 +60,14 @@ data = {
 data = json.dumps(data)
 resp = requests.post(scoring_uri, data=data, headers=headers)
 print(resp.text)
+****************************************************** Review ******************************************************
+Authenticatoin :
+(1) ACI: disabled by default, but can enbale key
+(2) AKS: key by default, but can enable token
+
+# retrive the keys for a webservice as:
+primary_key, secondary_key = service.get_keys()
+
+# to use token, the application needs to use a service-principal auth to verify the identity through ADD and call the get_token method to create a time-limited token.
+
+        
