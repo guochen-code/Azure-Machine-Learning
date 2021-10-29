@@ -1,3 +1,4 @@
+******************************************************************* Part-I Set Up an Environment *******************************************************************
 # (1) create from a .yml file
 env=Environment.from_conda_specification('experiment_env','environment.yml')
 
@@ -62,3 +63,9 @@ step = PythonScriptStep(name="extract_step",
 *******************************************************************                               
  # Curated environments are available in your workspace by default. 
 tf_env = Environment.get(ws, name='AzureML-TensorFlow-2.0-GPU')                               
+
+******************************************************************* Part-II Register and Retrieve *******************************************************************
+env.register(workspace=ws)
+Environment.list(workspace=ws)
+
+training_env = Environment.get(workspace=ws,name='training_environment')                                                  
