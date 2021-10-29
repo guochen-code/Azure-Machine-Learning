@@ -1,7 +1,16 @@
+import azureml.train.automl.utilities as automl_utils
+
+for metric in automl_utils.get_primary_metrics('classification'):
+    print(metric)
+    
+    
+    
 # Split the dataset into training and validation subsets
 diabetes_ds = ws.datasets.get("diabetes dataset")
 train_ds, test_ds = diabetes_ds.random_split(percentage=0.7, seed=123)
 print("Data ready!")
+
+
 
 from azureml.train.automl import AutoMLConfig
 
