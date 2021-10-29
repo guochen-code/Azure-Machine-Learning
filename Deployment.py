@@ -1,3 +1,10 @@
+Compute Targets for Inference:
+(1) AKS: real-time/high-scale production/ ONLY use UI to change nodes
+(2) AML Compute Clusters: Batch-inference/ NOT support for real-time
+(3) ACI: real-time/ for dev/test purposes/ low-scale & cpu-based < 48GB RAM
+(4) Local: limited testing and debugging
+  
+******************************************************************************************
 # Deploy model as web service
 # (1) create deployment folder
 # (2) write entry/scoring script in the folder
