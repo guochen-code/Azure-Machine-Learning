@@ -32,6 +32,13 @@ file_ds=file_ds.register(workspace=ws, name='img_files', create_new_version=True
 
 img_ds=Dataset.get_by_name(workspace=ws, name='img_files', version=2)
 
-******************************************************************
+************************************************************************************************************************************
 for file_path in files_ds.to_path():
     print(file_path)
+    
+************************************************************************************************************************************
+when passing file dataset, you must specify the acces mode:
+estimator=Estimator(...,
+                    inputs=[img_ds.as_named_input('img_data').as_download(path_on_compute='data')],
+                    ....)
+            
