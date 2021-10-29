@@ -1,3 +1,19 @@
+from azureml.train.automl import AutoMLConfig
+
+automl_config = AutoMLConfig(name='Automated ML Experiment',
+                             task='classification',
+                             compute_target=training_cluster,
+                             training_data = train_ds,
+                             validation_data = test_ds,
+                             label_column_name='Diabetic',
+                             iterations=4,
+                             primary_metric = 'AUC_weighted',
+                             max_concurrent_iterations=2,
+                             featurization='auto'
+                             )
+
+print("Ready for Auto ML run.")
+
 '''
 ONLY connect to local data files or azure blob storage.
 ONLY accepts azure ml TabularDatasets when working on a remote compute.
