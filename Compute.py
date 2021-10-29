@@ -10,7 +10,8 @@ try:
 except ComputeTargetException:
     # If it doesn't already exist, create it
     try:
-        compute_config = AmlCompute.provisioning_configuration(vm_size='STANDARD_DS11_V2', max_nodes=2, idle_seconds_before_scaledown=1800)
+        compute_config = AmlCompute.provisioning_configuration(vm_size='STANDARD_DS11_V2', min_nodes=0,max_nodes=2, 
+                                                               vm_priority='dedicaetd/low priority', idle_seconds_before_scaledown=1800)
         training_cluster = ComputeTarget.create(ws, cluster_name, compute_config)
         training_cluster.wait_for_completion(show_output=True)
     except Exception as ex:
