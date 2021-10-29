@@ -23,3 +23,11 @@ if 'diabetes dataset' not in ws.datasets:
         print(ex)
 else:
     print('Dataset already registered.')
+
+    
+******************************************************************
+img_paths=[(blob_ds,'data/files/images/*.jpg),(blob_ds,'data/file/images/*.png)]
+file_ds=Dataset.File.from_files(path=img_paths)
+file_ds=file_ds.register(workspace=ws, name='img_files', create_new_version=True)
+
+img_ds=Dataset.get_by_name(workspace=ws, name='img_files', version=2)
