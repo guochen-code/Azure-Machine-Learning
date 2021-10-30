@@ -33,5 +33,25 @@ service.reload()
 print(service.run(input_data=json_data))
 
   
-  
+************************************************************************************************************************
+# After successfully training your ML model, you have successfully deployed it as a real-time service to an AKS inference environment. 
+# During the live operation, you experience an error and your service crashes when you post data to the scoring endpoint.
 
+# Solution: in your **DEV** environment, add an error catching statement to your run() function so that it returns a detailed error message.
+
+# Including statements to return error messages from the run() function should only be used for debugging purposes. 
+# For security and performance reasons, this should be avoided in a production environment. Try debugging errors in a local container environment.
+
+def run(input_data):
+    try:
+        data = json.loads(input_data)['data']
+        data = np.array(data)
+        result = model.predict(data)
+        return json.dumps({"result": result.tolist()})
+    except Exception as e:
+        result = str(e)
+        # return error message back to the client
+        return json.dumps({"error": result})
+#
+# Note: Returning error messages from the run(input_data) call should be done for debugging purpose only. 
+# For security reasons, you should not return error messages this way in a production environment.
