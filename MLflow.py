@@ -31,3 +31,20 @@ import mlflow
 with mlflow.start_run():
   mlflow.log_metric('example',1.23)
 run=exp.submit(src)
+
+********************************************************Retrieve*********************************************************
+# After the run completes, you can retrieve it using the MlFlowClient().
+from mlflow.tracking import MlflowClient
+
+# Use MlFlow to retrieve the run that was just completed
+client = MlflowClient()
+finished_mlflow_run = MlflowClient().get_run(mlflow_run.info.run_id)
+
+# You can view the metrics, parameters, and tags for the run in the data field of the run object.
+metrics = finished_mlflow_run.data.metrics
+tags = finished_mlflow_run.data.tags
+params = finished_mlflow_run.data.params
+
+# Note: The metrics dictionary under mlflow.entities.Run.data.metrics only returns the most recently logged value for a given metric name. 
+# For example, if you log, in order, 1, then 2, then 3, then 4 to a metric called sample_metric, only 4 is present in the metrics dictionary for sample_metric.
+# To get all metrics logged for a particular metric name, you can use MlFlowClient.get_metric_history().
