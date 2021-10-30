@@ -18,7 +18,7 @@ automl_config = AutoMLConfig(name='Automated ML Experiment',
                              task='classification',
                              compute_target=training_cluster,
                              training_data = train_ds,
-                             validation_data = test_ds,
+                             validation_data = test_ds, # validation_size = 0.2/ n_cross_validations = 5/ n_cross_validations = 7 & validation_size = 0.2/
                              label_column_name='Diabetic',
                              iterations=4,
                              primary_metric = 'AUC_weighted',
