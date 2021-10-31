@@ -48,6 +48,19 @@ scoring_uri = service.scoring_uri
 # If the service is authenticated, set the key or token
 key, _ = service.get_keys()
 
+$$
+primary, secondary = service.get_keys()
+print(primary)
+# If you need to regenerate a key, use service.regen_key.
+
+token, refresh_by = service.get_token()
+print(token)
+# If you have the Azure CLI and the machine learning extension, you can use the following command to get a token:
+az ml service get-access-token -n <service-name>
+# Currently the only way to retrieve the token is by using the Azure Machine Learning SDK or the Azure CLI machine learning extension.
+# You will need to request a new token after the token's refresh_by time.
+$$
+
 # Set the appropriate headers
 headers = {"Content-Type": "application/json"}
 headers["Authorization"] = f"Bearer {key}"
