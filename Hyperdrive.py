@@ -41,3 +41,36 @@ run = experiment.submit(config=hyperdrive)
 # Show the status in the notebook as the experiment runs
 RunDetails(run).show()
 run.wait_for_completion()
+
+************************************************retrive the best model and related parameters + arguments************************************************
+# Print all child runs, sorted by the primary metric
+for child_run in run.get_children_sorted_by_primary_metric():
+    print(child_run)
+
+# Get the best run, and its metrics and arguments
+best_run = run.get_best_run_by_primary_metric()
+best_run_metrics = best_run.get_metrics()
+script_arguments = best_run.get_details() ['runDefinition']['arguments']
+print('Best Run Id: ', best_run.id)
+print(' -AUC:', best_run_metrics['AUC'])
+print(' -Accuracy:', best_run_metrics['Accuracy'])
+print(' -Arguments:',script_arguments)
+
+************************************************retrive the best model and related parameters + arguments************************************************
+from azureml.core import Model
+
+# Register model
+best_run.register_model(model_path='outputs/diabetes_model.pkl', model_name='diabetes_model',
+                        tags={'Training context':'Hyperdrive'},
+                        properties={'AUC': best_run_metrics['AUC'], 'Accuracy': best_run_metrics['Accuracy']})
+
+# List registered models
+for model in Model.list(ws):
+    print(model.name, 'version:', model.version)
+    for tag_name in model.tags:
+        tag = model.tags[tag_name]
+        print ('\t',tag_name, ':', tag)
+    for prop_name in model.properties:
+        prop = model.properties[prop_name]
+        print ('\t',prop_name, ':', prop)
+    print('\n')
