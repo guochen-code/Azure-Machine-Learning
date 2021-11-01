@@ -37,3 +37,5 @@ service.wait_for_completion(show_output=True)
 
 # for ACI or local services, you can omit the deployment_target parameter (or set it to None).
                      
+*************CLI
+az ml model deploy --ct myaks -m mymodel:1 -n myservice --ic inferenceconfig.json --dc deploymentconfig.json
