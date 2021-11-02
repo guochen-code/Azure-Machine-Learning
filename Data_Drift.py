@@ -1,5 +1,30 @@
 # (1) baseline dataset
+
 # (2) create target dataset
+from azureml.core import Workspace, Dataset, Datastore
+
+# get workspace object
+ws = Workspace.from_config()
+
+# get datastore object 
+dstore = Datastore.get(ws, 'your datastore name')
+
+# specify datastore paths
+dstore_paths = [(dstore, 'weather/*/*/*/*/data.parquet')]
+
+# specify partition format
+partition_format = 'weather/{state}/{date:yyyy/MM/dd}/data.parquet'
+
+# create the Tabular dataset with 'state' and 'date' as virtual columns 
+dset = Dataset.Tabular.from_parquet_files(path=dstore_paths, partition_format=partition_format)
+
+# assign the timestamp attribute to a real or virtual column in the dataset
+dset = dset.with_timestamp_columns('date')
+
+# register the dataset as the target dataset
+dset = dset.register(ws, 'target')
+
+# (3) create data drift monitor
 from azureml.core import Workspace, Dataset
 from azureml.datadrift import DataDriftDetector
 from datetime import datetime
