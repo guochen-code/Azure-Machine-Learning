@@ -1,3 +1,9 @@
+# Print the environment details
+print(experiment_env.name, 'defined.')
+print(experiment_env.python.conda_dependencies.serialize_to_string())
+
+
+
 ******************************************************************* Part-I Set Up an Environment *******************************************************************
 # (1) create from a .yml file
 env=Environment.from_conda_specification('experiment_env','environment.yml')
