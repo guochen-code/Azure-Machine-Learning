@@ -1,3 +1,11 @@
+'''summary:
+  (1) Use MLflow with an inline experiment: 
+    To use MLflow to track metrics for an inline experiment, you must set the MLflow tracking URI to the workspace where the experiment is being run. 
+    This enables you to use mlflow tracking methods to log data to the experiment run.
+  (2) Use MLflow in an experiment script:
+    When you use MLflow tracking in an Azure ML experiment script, the MLflow tracking URI is set automatically when you start the experiment run. 
+    However, the environment in which the script is to be run must include the required mlflow packages.'''
+*********************************************************************************************************************************************
 # (1) track local runs
 pip install azureml-mlflow
 
