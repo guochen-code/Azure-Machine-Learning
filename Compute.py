@@ -39,3 +39,10 @@ db_config=DatabricksCompute.attach_configuration(resource_group=db_resource_grou
                                                  access_token=db_access_token)
 databricks_compute=ComputeTarget.attach(ws,compute_name,db_config)
 databricks_compute.wait_for_completion(True)
+
+*********************************************************************************
+# check status of compute
+# While you're waiting for the experiment to run, you can check on the status of the compute in the widget above or in Azure Machine Learning studio. 
+# You can also check the status of the compute using the code below.
+cluster_state = training_cluster.get_status()
+print(cluster_state.allocation_state, cluster_state.current_node_count)
