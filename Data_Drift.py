@@ -66,7 +66,19 @@ monitor = monitor.disable_schedule()
 
 # enable the pipeline schedule for the data drift detector
 monitor = monitor.enable_schedule()
-***************************understanding data drift results
+***************************
+from azureml.widgets import RunDetails
+
+backfill = monitor.backfill(dt.datetime.now() - dt.timedelta(weeks=6), dt.datetime.now())
+
+RunDetails(backfill).show()
+backfill.wait_for_completion()
+
+drift_metrics = backfill.get_metrics()
+for metric in drift_metrics:
+    print(metric, drift_metrics[metric])
+
+**************************************************************************understanding data drift results******************************************************
 # Metrics:
 (1) Data drift magnitude
 (2) Top drifting features: Shows the features from the dataset that have drifted the most and are therefore contributing the most to the Drift Magnitude metric.
@@ -74,7 +86,7 @@ monitor = monitor.enable_schedule()
   2.2 - Categorical features: Euclidian distance/Unique values
 (3) Threshold: Data Drift magnitude beyond the set threshold will trigger alerts. This can be configured in the monitor settings.
 
-***************************Trouleshooting
+*********************************************************************************Trouleshooting********************************************************************
 # If the SDK backfill() function does not generate the expected output, it may be due to an authentication issue. 
 # When you create the compute to pass into this function, do not use Run.get_context().experiment.workspace.compute_targets. 
 # Instead, use ServicePrincipalAuthentication such as the following to create the compute that you pass into that backfill() function:
