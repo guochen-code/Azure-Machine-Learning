@@ -41,7 +41,7 @@ for root, directories, filenames in os.walk(download_folder):
 # If you need to troubleshoot the experiment run, you can use the get_details method to retrieve basic details about the run, 
 # or you can use the get_details_with_logs method to retrieve the run details as well as the contents of log files generated during the run:
 run.get_details_with_logs()
-# Note that this time, the run generated some log files. You can view these (metrics + files) in the widget, <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# Note that this time, the run generated some log files. You can view these (metrics + files) in the widget, <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # or you can use the get_details_with_logs method like we did before, only this time the output will include the log data.
 run.get_details_with_logs()
 
@@ -59,3 +59,16 @@ for root, directories, filenames in os.walk(log_folder):
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ running with a script @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 # to access the experiment run context, which is needed to log metrics, the script must import azureml.core.Run class and call its get_context method
 run = Run.get_context()
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ View experiment run history @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+# Now that you've run the same experiment multiple times, you can view the history in Azure Machine Learning studio and explore each logged run. 
+# Or you can retrieve an experiment by name from the workspace and iterate through its runs using the SDK:
+from azureml.core import Experiment, Run
+
+diabetes_experiment = ws.experiments['mslearn-diabetes']
+for logged_run in diabetes_experiment.get_runs():
+    print('Run ID:', logged_run.id)
+    metrics = logged_run.get_metrics()
+    for key in metrics.keys():
+        print('-', key, metrics.get(key))
