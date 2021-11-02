@@ -1,3 +1,18 @@
+************************************************************************************Experiment URL****************************************************************
+# Get the latest run of the experiment
+run = list(experiment.get_runs())[0]
+
+# Get logged metrics
+print("\nMetrics:")
+metrics = run.get_metrics()
+for key in metrics.keys():
+        print(key, metrics.get(key))
+    
+# Get a link to the experiment in Azure ML studio   
+experiment_url = experiment.get_portal_url()
+print('See details at', experiment_url)
+
+
 ******************************************************************* Part-I Set Up an Environment *******************************************************************
 # (1) create from a .yml file
 env=Environment.from_conda_specification('experiment_env','environment.yml')
