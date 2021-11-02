@@ -63,7 +63,7 @@ args = parser.parse_args()
 reg = args.reg_rate
 
 data_path = run.input_datasets['training_files'] # Get the training data path from the input
-# (You could also just use args.dataset_folder if you don't want to rely on a hard-coded friendly name)
+# (You could also just use args.dataset_folder if you don't want to rely on a hard-coded friendly name) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 # Read the files
 all_files = glob.glob(data_path + "/*.csv")
@@ -79,8 +79,8 @@ diabetes = pd.concat((pd.read_csv(f) for f in all_files), sort=False)
 # while as_mount creates a mount point from which the files can be streamed directly from the datastore.
 
 # You can combine the access method with the as_named_input method to include the dataset in the input_datasets collection in the experiment run 
-# (if you omit this, for example by setting the argument to diabetes_ds.as_mount(), 
-# the script will be able to access the dataset mount point from the script arguments, but not from the input_datasets collection).
+# (if you omit this, for example by setting the argument to diabetes_ds.as_mount(), !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# the script will be able to access the dataset mount point from the script arguments, but not from the input_datasets collection). !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 from azureml.core import Experiment
 from azureml.widgets import RunDetails
