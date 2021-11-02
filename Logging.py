@@ -1,3 +1,13 @@
+# Create an Azure ML experiment in your workspace
+experiment = Experiment(workspace=ws, name="mslearn-diabetes")
+
+# Start logging data from the experiment, obtaining a reference to the experiment run
+run = experiment.start_logging()
+print("Starting experiment:", experiment.name)
+
+# load the data from a local file
+data = pd.read_csv('data/diabetes.csv')
+
 # Count the rows and log the result
 row_count = (len(data))
 run.log('observations', row_count)
@@ -26,3 +36,10 @@ for col in summary_stats:
     values = list(summary_stats[col].values())
     for index in range(len(keys)):
         run.log_row(col, stat=keys[index], value = values[index])
+
+# Save a sample of the data and upload it to the experiment output
+data.sample(100).to_csv('sample.csv', index=False, header=True)
+run.upload_file(name='outputs/sample.csv', path_or_stream='./sample.csv')
+
+# Complete the run
+run.complete()        
