@@ -27,7 +27,34 @@ run.upload_file(name='outputs/sample.csv',path_or_stream='./sample.csv')
 # automatically uploaded to the run's outputs folder when the run completes
 files=run.get_file_names()
 print(json.dump(files,indent=2))
+***************************************************************************
+import os
+download_folder = 'downloaded-files'
+# Download files in the "outputs" folder
+run.download_files(prefix='outputs', output_directory=download_folder)
+# Verify the files have been downloaded
+for root, directories, filenames in os.walk(download_folder): 
+    for filename in filenames:  
+        print (os.path.join(root,filename))
 
+***************************************************************************
+# If you need to troubleshoot the experiment run, you can use the get_details method to retrieve basic details about the run, 
+# or you can use the get_details_with_logs method to retrieve the run details as well as the contents of log files generated during the run:
+run.get_details_with_logs()
+# Note that this time, the run generated some log files. You can view these (metrics + files) in the widget, <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# or you can use the get_details_with_logs method like we did before, only this time the output will include the log data.
+run.get_details_with_logs()
+
+***************************************************************************
+# Although you can view the log details in the output above, it's usually easier to download the log files and view them in a text editor.
+import os
+log_folder = 'downloaded-logs'
+# Download all files
+run.get_all_logs(destination=log_folder)
+# Verify the files have been downloaded
+for root, directories, filenames in os.walk(log_folder): 
+    for filename in filenames:  
+        print (os.path.join(root,filename))
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ running with a script @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 # to access the experiment run context, which is needed to log metrics, the script must import azureml.core.Run class and call its get_context method
