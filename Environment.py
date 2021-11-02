@@ -72,6 +72,9 @@ tf_env = Environment.get(ws, name='AzureML-TensorFlow-2.0-GPU')
 
 ******************************************************************* Part-II Register and Retrieve *******************************************************************
 env.register(workspace=ws)
-Environment.list(workspace=ws)
 
+envs = Environment.list(workspace=ws)
+for env in envs:
+    print("Name",env)
+                                                  
 training_env = Environment.get(workspace=ws,name='training_environment')                                                  
