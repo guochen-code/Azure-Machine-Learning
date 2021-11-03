@@ -40,6 +40,13 @@ with mlflow.start_run():
   mlflow.log_metric('example',1.23)
 run=exp.submit(src)
 
+******************************************************** Register Model *********************************************************
+
+# register model
+mlflow.sklearn.log_model(model, artifact_path = "trained_model", 
+                         registered_model_name = 'my_trained_model')
+
+
 ********************************************************Retrieve*********************************************************
 # After the run completes, you can retrieve it using the MlFlowClient().
 from mlflow.tracking import MlflowClient
