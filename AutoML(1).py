@@ -28,6 +28,7 @@ automl_config = AutoMLConfig(name='Automated ML Experiment',
 
 print("Ready for Auto ML run.")
 
+****************************************************************************** !!! *********************************************************************************************
 '''
 ONLY connect to local data files or azure blob storage.
 ONLY accepts azure ml TabularDatasets when working on a remote compute.
@@ -39,7 +40,7 @@ Train,validation, and test:
 
 If you are using ONNX models, or have model-explanability enabled, stacking is disabled and ONLY voting is utilized.
 '''
-***************************************************************************************************************************************************************************
+**************************************************************************** !!! ***********************************************************************************************
 ''' 
 featurization = 'auto'/'off'/'FeaturizationConfig'
 
