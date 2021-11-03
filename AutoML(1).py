@@ -20,7 +20,7 @@ automl_config = AutoMLConfig(name='Automated ML Experiment',
                              training_data = train_ds,
                              validation_data = test_ds, # validation_size = 0.2/ n_cross_validations = 5/ n_cross_validations = 7 & validation_size = 0.2/
                              label_column_name='Diabetic',
-                             iterations=4, ##The total number of different algorithm and parameter combinations to test during an automated ML experiment. If not specified, the default is 1000 iterations.
+                             iterations=4, ##The total number of different algorithm and parameter combinations to test during an automated ML experiment, default 1000 iterations.
                              primary_metric = 'AUC_weighted',
                              max_concurrent_iterations=2,
                              featurization='auto'
