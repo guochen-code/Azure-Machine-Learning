@@ -3,11 +3,8 @@ import urllib.request
 from azureml.core.model import Model
 urllib.request.urlretrive('https://....','model.onnx')
 model=Model.register(ws,model_name='model_name',
-                     model_path='./model_name', ############ model_path refers to local path
-                     tags={'training context': 'pipeline'},
-                     properties={'AUC':np.float(auc),'Accuracy':np.float(acc)}
-                    ) 
-
+                     model_path='./model_name') ############ model_path refers to local path
+                  
 #################################### register a model from run
 #                         (1) Register a model from an azureml.core.Run object:
 # save model, automatically uploaded
@@ -16,8 +13,7 @@ joblib.dump(value=model,filename='outputs/model_name.pkl')
 # register model
 run.register_model(model_path='outputs/model_name.pkl',  ### model_path refers to the cloud location of the model
                    model_name='model_name',
-                   tags={'Training Contect':'Tabular dataset'},
-                   properties={'AUC':run.get_metrics()['AUC'],'Accuracy':run.get_metrics()['Accuracy']})
+                   properties={'AUC':run.get_metrics()['AUC'],'Accuracy':run.get_metrics()['Accuracy']}) ########## properties={'AUC':np.float(auc),'Accuracy':np.float(acc)}
 
 print(model.name, model.id, model.version, sep='\t')
 
