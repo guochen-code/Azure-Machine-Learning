@@ -2,7 +2,11 @@
 import urllib.request
 from azureml.core.model import Model
 urllib.request.urlretrive('https://....','model.onnx')
-model=Model.register(ws,model_name='model_name',model_path='./model_name') ### model_path refers to local path
+model=Model.register(ws,model_name='model_name',
+                     model_path='./model_name', ############ model_path refers to local path
+                     tags={'training context': 'pipeline'},
+                     properties={'AUC':np.float(auc),'Accuracy':np.float(acc)}
+                    ) 
 
 #################################### register a model from run
 #                         (1) Register a model from an azureml.core.Run object:
