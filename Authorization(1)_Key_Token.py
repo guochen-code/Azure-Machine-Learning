@@ -17,7 +17,8 @@ aci_config = AciWebservice.deploy_configuration(cpu_cores = 1,
                                                 memory_gb = 1,
                                                 auth_enabled=True)
 
-# To fetch the auth keys, use aci_service.get_keys(). 
+# To fetch the auth keys, use 
+aci_service.get_keys(). 
 # To regenerate a key, use the regen_key() function and pass either Primary or Secondary.
 aci_service.regen_key("Primary")
 # or
