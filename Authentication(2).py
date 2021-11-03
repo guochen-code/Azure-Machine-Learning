@@ -1,4 +1,5 @@
-'''Interactive Login Authentication
+'''
+Interactive Login Authentication
 Azure CLI Authentication
 Managed Service Identity (MSI) Authentication
 Service Principal Authentication
