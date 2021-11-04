@@ -148,14 +148,14 @@ keyvault.set_secret(name="secret-name", value = local_secret)
 
 keyvault.list_secrets() # ou can list secret names you've added. This method doesn't return the values of the secrets.
 
-# Note: This method returns the secret value. Take care not to write the the secret value to output.
+########## Note: This method returns the secret value. Take care not to write the the secret value to output.
 retrieved_secret = keyvault.get_secret(name="secret-name")
 local_secret==retrieved_secret
 
 # In submitted runs on local and remote compute, you can use the get_secret method of Run instance to get the secret value from Key Vault.
 #The method gives you a simple shortcut: the Run instance is aware of its Workspace and Keyvault, 
 # so it can directly obtain the secret without you having to instantiate the Workspace and Keyvault within remote run.
-# Note: This method returns the secret value. Take care not to write the the secret value to output.
+########## Note: This method returns the secret value. Take care not to write the the secret value to output.
 %%writefile get_secret.py
 from azureml.core import Run
 run = Run.get_context()
