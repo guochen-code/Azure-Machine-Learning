@@ -65,3 +65,28 @@ with open(file_name, "w") as f:
 
 # Upload the file explicitly into artifacts 
 run.upload_file(name = file_name, path_or_stream = file_name)
+************************************************************************************ Analyze results
+# You can refresh the run in the Azure portal to see all of your results. 
+# In many cases you will want to analyze runs that were performed previously to inspect the contents or compare results. 
+# Runs can be fetched from their parent Experiment object using the Run() constructor or the experiment.get_runs() method.
+fetched_run = Run(experiment, run_id)
+fetched_run
+
+# Call run.get_metrics() to retrieve all the metrics from a run.
+# Call run.get_metrics(name = <metric name>) to retrieve a metric value by name. Retrieving a single metric can be faster, especially if the run contains many metrics.
+# See the files uploaded for this run by calling run.get_file_names()
+# Once you know the file names in a run, you can download the files using the run.download_file() method
+import os
+os.makedirs('files', exist_ok=True)
+
+for f in run.get_file_names():
+    dest = os.path.join('files', f.split('/')[-1])
+    print('Downloading file {} to {}...'.format(f, dest))
+    fetched_run.download_file(f, dest)   
+#
+# Often when you analyze the results of a run, you may need to tag that run with important personal or external information. 
+# You can add a tag to a run using the run.tag() method. AzureML supports valueless and valued tags.
+fetched_run.tag("My Favorite Run")
+fetched_run.tag("Competition Rank", 1)
+
+fetched_run.get_tags()
