@@ -40,12 +40,19 @@ with mlflow.start_run():
   mlflow.log_metric('example',1.23)
 run=exp.submit(src)
 
-******************************************************** Register Model *********************************************************
+******************************************************** Register Model !!! sklearn !!! *********************************************************
 
 # register model
 mlflow.sklearn.log_model(model, artifact_path = "trained_model", 
                          registered_model_name = 'my_trained_model')
 
+******************************************************** log_artifact *********************************************************
+ # Plot actuals vs predictions and save the plot within the run
+    fig = plt.figure(1)
+    idx = np.argsort(data['test']['y'])
+    plt.plot(data['test']['y'][idx],preds[idx])
+    fig.savefig("actuals_vs_predictions.png")
+    mlflow.log_artifact("actuals_vs_predictions.png") 
 
 ********************************************************Retrieve*********************************************************
 # After the run completes, you can retrieve it using the MlFlowClient().
