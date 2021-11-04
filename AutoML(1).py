@@ -24,6 +24,10 @@ automl_config = AutoMLConfig(name='Automated ML Experiment',
                              primary_metric = 'AUC_weighted',
                              max_concurrent_iterations=2,
                              featurization='auto'
+                             # debug_log = 'automl_errors.log',
+                             # iteration_timeout_minutes = 10, # Time limit in minutes for each iteration.
+                             # verbosity = logging.INFO,
+                             # spark_context=sc, #databricks/spark related
                              )
 
 print("Ready for Auto ML run.")
