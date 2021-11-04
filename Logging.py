@@ -43,3 +43,25 @@ run.upload_file(name='outputs/sample.csv', path_or_stream='./sample.csv')
 
 # Complete the run
 run.complete()        
+
+************************************************************************************
+logging vectors: log_row or repeatly log value
+logging tables: log_table from a dictionary of lists where each list represents a column in the table or repeatly log log_list
+************************************************************************************ log file
+# Note: vectors logged into the run are expected to be relatively small. Logging very large vectors into Azure ML can result in reduced performance. 
+# If you need to store large amounts of data associated with the run, you can write the data to file that will be uploaded.
+# Note: tables logged into the run are expected to be relatively small. Logging very large tables into Azure ML can result in reduced performance. 
+# If you need to store large amounts of data associated with the run, you can write the data to file that will be uploaded.
+import os
+directory = 'logging-api'
+
+if not os.path.exists(directory):
+    os.mkdir(directory)
+
+file_name = os.path.join(directory, "myfile.txt")
+
+with open(file_name, "w") as f:
+    f.write('This is an output file that will be uploaded.\n')
+
+# Upload the file explicitly into artifacts 
+run.upload_file(name = file_name, path_or_stream = file_name)
