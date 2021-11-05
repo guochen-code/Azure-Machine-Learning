@@ -1,3 +1,13 @@
+# log_row vs log_list:
+# log_row:
+Log a row with 2 numerical columns repeatedly - run.log_row(name='Cosine Wave', angle=angle, cos=np.cos(angle)) sines['angle'].append(angle) sines['sine'].append(np.sin(angle))
+- Two-variable line chart
+    
+# log_list:    
+Log an array of numeric values - run.log_list(name='Fibonacci', value=[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]) - single-variable line chart
+    
+
+********************************************************************************************************************************************************
 # Create an Azure ML experiment in your workspace
 experiment = Experiment(workspace=ws, name="mslearn-diabetes")
 
