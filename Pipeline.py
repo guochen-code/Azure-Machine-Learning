@@ -126,3 +126,30 @@ print("Simple validation complete")
 pipeline_run2 = Experiment(ws, 'Hello_World2').submit(pipeline2)
 print("Pipeline is submitted for execution")
 RunDetails(pipeline_run2).show()
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# A StepSequence can be used to easily run steps in a specific order, without needing to specify data dependencies through the use of PipelineData.
+from azureml.pipeline.core import Pipeline, StepSequence
+   from azureml.pipeline.steps import PythonScriptStep
+
+   prepare_step = PythonScriptStep(
+       name='prepare data step',
+       script_name="prepare_data.py",
+       compute_target=compute
+   )
+
+   train_step = PythonScriptStep(
+       name='train step',
+       script_name="train.py",
+       compute_target=compute
+   )
+
+   step_sequence = StepSequence(steps=[prepare_step, train_step])
+   pipeline = Pipeline(workspace=ws, steps=step_sequence)
+   
+# In this example train_step will only run after prepare_step has successfully completed execution.
+# To run three steps in parallel and then feed them into a fourth step, do the following:
+
+initial_steps = [step1, step2, step3]
+   all_steps = StepSequence(steps=[initial_steps, step4])
+   pipeline = Pipeline(workspace=ws, steps=all_steps)
