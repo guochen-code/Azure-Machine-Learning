@@ -1,6 +1,7 @@
 # log_row vs log_list:
 # log_row:
-Log a row with 2 numerical columns repeatedly - run.log_row(name='Cosine Wave', angle=angle, cos=np.cos(angle)) sines['angle'].append(angle) sines['sine'].append(np.sin(angle))
+Log a row with 2 numerical columns repeatedly 
+- run.log_row(name='Cosine Wave', angle=angle, cos=np.cos(angle)) sines['angle'].append(angle) sines['sine'].append(np.sin(angle))
 - Two-variable line chart
     
 # log_list:    
