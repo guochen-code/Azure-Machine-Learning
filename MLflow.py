@@ -74,4 +74,5 @@ params = finished_mlflow_run.data.params
 
 # Note: The metrics dictionary under mlflow.entities.Run.data.metrics only returns the most recently logged value for a given metric name. 
 # For example, if you log, in order, 1, then 2, then 3, then 4 to a metric called sample_metric, only 4 is present in the metrics dictionary for sample_metric.
-# To get all metrics logged for a particular metric name, you can use MlFlowClient.get_metric_history().
+# To get all metrics logged for a particular metric name, you can use 
+MlFlowClient.get_metric_history().
