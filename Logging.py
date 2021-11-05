@@ -58,8 +58,10 @@ run.upload_file(name='outputs/sample.csv', path_or_stream='./sample.csv')
 run.complete()        
 
 ************************************************************************************
-logging vectors: log_row or repeatly log value
-logging tables: log_table from a dictionary of lists where each list represents a column in the table or repeatly log log_list
+logging vectors: log_list or repeatly log value
+logging tables: log_table from a dictionary of lists where each list represents a column in the table or repeatly log log_row
+# Vectors are good for recording information such as loss curves. You can log a vector by creating a list of numbers, calling log_list() and supplying a name and the list, 
+# or by repeatedly logging a value using the same name.
 ************************************************************************************ log file
 # Note: vectors logged into the run are expected to be relatively small. Logging very large vectors into Azure ML can result in reduced performance. 
 # If you need to store large amounts of data associated with the run, you can write the data to file that will be uploaded.
