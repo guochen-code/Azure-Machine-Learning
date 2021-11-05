@@ -5,7 +5,9 @@ Log a row with 2 numerical columns repeatedly
 - Two-variable line chart
     
 # log_list:    
-Log an array of numeric values - run.log_list(name='Fibonacci', value=[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]) - single-variable line chart
+Log an array of numeric values 
+- run.log_list(name='Fibonacci', value=[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]) 
+- single-variable line chart
     
 
 ********************************************************************************************************************************************************
