@@ -15,7 +15,7 @@ parallel_run_config = ParallelRunConfig(
     output_action="append_row",
     environment=batch_env,
     compute_target=inference_cluster,
-    node_count=2)
+    node_count=2) # Number of nodes in the compute target used for running the ParallelRunStep.
 
 parallelrun_step = ParallelRunStep(
     name='batch-score-diabetes',
