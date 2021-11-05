@@ -9,7 +9,7 @@ output_dir = OutputFileDatasetConfig(name='inferences')
 
 parallel_run_config = ParallelRunConfig(
     source_directory=experiment_folder,
-    entry_script="batch_diabetes.py",
+    entry_script="batch_diabetes.py", #scoring script: init() + run(mini_batch)
     mini_batch_size="5",
     error_threshold=10,
     output_action="append_row",
