@@ -30,7 +30,7 @@ run.log_table # record a dictionary as a table
 run.log_image # record an image file or plot
 
 ##################################################################### retrieve and view logs #####################################################################
-Rundetails(run).show
+RunDetails(run).show()
 # or
 metrics=run.get_metrics()
 print(json.dump(metrics,indent=2))
