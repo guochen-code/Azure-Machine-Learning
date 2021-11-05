@@ -1,3 +1,5 @@
+# the class ParallelRunStep is used to defined and set up a pipeline step and build a batch inference pipeline to handle large amounts of data in parallel (break up data into batches)
+
 from azureml.pipeline.steps import ParallelRunConfig, ParallelRunStep
 from azureml.data import OutputFileDatasetConfig
 from azureml.core.runconfig import DockerConfiguration
