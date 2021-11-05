@@ -54,6 +54,11 @@ mlflow.sklearn.log_model(model, artifact_path = "trained_model",
     fig.savefig("actuals_vs_predictions.png")
     mlflow.log_artifact("actuals_vs_predictions.png") 
 
+# Log numpy metrics or PIL image objects: 
+mlflow.log_image(img, 'figure.png')
+
+# Log matlotlib plot or image file: 
+mlflow.log_figure(fig, "figure.png")
 ********************************************************Retrieve*********************************************************
 # After the run completes, you can retrieve it using the MlFlowClient().
 from mlflow.tracking import MlflowClient
