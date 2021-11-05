@@ -12,7 +12,7 @@
 4. attempt to create a new custom role and you receive 'role definition limit exceeded'
 - in you tenant, there is a limit of 2,000 custom roles
 
-5. make a change in Access Control or add a custom role and chinage is NOT reflected in the portal or in the console
+5. make a change in Access Control or add a custom role and change is NOT reflected in the portal or in the console
 - these changes can take time to take effect
 - logout and re-login to force the refresh
 
