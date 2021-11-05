@@ -1,4 +1,4 @@
-# Azure ML provides two ways to control access to web services: Kea and Token. User/Password is not applicable here.
+# Azure ML provides two ways to control access to web services: Key and Token. User/Password is not applicable here.
 
 *******************************************************************************
 
